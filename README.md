@@ -11,3 +11,9 @@ Clone this repository locally, navigate to this directory from the command line,
 
 Type in the name of the directory you'd like to sort, e.g. ~/Documents/Wallpapers/Cars, then give it a moment to assess each image and prepend a sort number for
 you.
+
+## Dependencies
+
+Python 2, and the python library colorthief.
+
+If you're using homebrew: pip install colorthief
