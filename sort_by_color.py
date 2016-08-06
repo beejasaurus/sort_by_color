@@ -3,8 +3,6 @@
 from colorthief import ColorThief
 import os
 import time
-# import shutil
-# import pickle
 import json
 from operator import itemgetter
 import colorsys
@@ -15,8 +13,6 @@ path = str(raw_input("Enter directory you'd like to sort: "))
 os.chdir(os.path.expanduser(path))
 
 print os.getcwd()
-
-# `path = 'Ghibli-step'
 
 def get_lum(r,g,b):
     return math.sqrt(0.241 * r + 0.691 * g + 0.068 * b)
@@ -39,13 +35,11 @@ files = [f for f in os.listdir('.') if os.path.isfile(f)]
 print 'files',files
 color_list = []
 for index, file in enumerate(files):
-    # file_path = path + '/' + file
     if not file.startswith('.'):        
         color_thief = ColorThief(file)
         print 'Getting color for: ', file,'(' + str(index + 1) + '/' + str(len(files)) + ')'
         dominant_color = color_thief.get_color(quality=1)
         # palette = color_thief.get_palette(color_count=6)
-        # color_list.extend({'file': file, 'rgb': dominant_color})
         color_list.append({'file': file, 'rgb': dominant_color, 'hsv': colorsys.rgb_to_hsv(*dominant_color), 'hls': colorsys.rgb_to_hls(*dominant_color)})
     else:
         print 'Skipping: ', file,'(' + str(index + 1) + '/' + str(len(files)) + ')'
@@ -61,6 +55,5 @@ with output_file as file:
     json.dump(sorted_step,file)
 
 for index, file in enumerate(sorted_step):
-    # file_path = path + '/' + file['file']
     os.rename(file['file'], str(index) + '. ' + file['file']);
 
